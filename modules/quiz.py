@@ -90,6 +90,7 @@ def render():
             user_answers[i] = st.radio(
                 f"Select answer for Q{i}",
                 item["options"],
+                index=None,
                 key=f"quiz_q{i}",
                 label_visibility="collapsed",
             )
@@ -113,8 +114,10 @@ def render():
             if selected == correct:
                 score += 1
                 st.success(f"**Q{i}.** ✅ Correct! — {correct}")
+            elif selected is None:
+                st.error(f"**Q{i}.** ❌ You didn't select an answer.")
             else:
-                st.error(f"**Q{i}.** ❌ Your answer: *{selected}* — Correct answer: **{correct}**")
+                st.error(f"**Q{i}.** ❌ Your answer: *{selected}* is incorrect.")
 
         st.markdown("---")
 
