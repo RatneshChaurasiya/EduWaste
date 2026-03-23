@@ -66,7 +66,7 @@ def generate_certificate(name):
     font_name = get_font("name", 80) 
     font_message = get_font("text", 22)
     font_date = get_font("text", 18)
-    font_small = get_font("text", 14)
+    font_small = get_font("text", 16)
 
     # ── Paste Logo (Top Center) ──────────────────────────────
     logo_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "logo.png")
@@ -128,12 +128,12 @@ def generate_certificate(name):
     draw.text((width - 350, bottom_y + 25), "EduWaste Team", font=font_date, fill=(100, 100, 100), anchor="mm")
     
     # Very bottom branding
-    draw.text((width/2, height - 50), "Together towards a cleaner and greener future.", 
-              font=font_small, fill=(150, 150, 150), anchor="mm")
+    draw.text((width/2, height - 75), "Together towards a cleaner and greener future.", 
+              font=font_small, fill=(100, 100, 100), anchor="mm")
               
     # Unique Certificate ID (Bottom Left)
     cert_id = f"Certificate ID: {uuid.uuid4().hex[:10].upper()}"
-    draw.text((60, height - 50), cert_id, font=font_small, fill=(160, 160, 160), anchor="lm")
+    draw.text((70, height - 75), cert_id, font=font_small, fill=(100, 100, 100), anchor="lm")
 
     # ── Export ───────────────────────────────────────────────
     buf = io.BytesIO()
