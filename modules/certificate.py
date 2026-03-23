@@ -5,29 +5,11 @@ import uuid
 from PIL import Image, ImageDraw, ImageFont
 import datetime
 
-# Beautiful Google Fonts to elevate the certificate design
-FONTS = {
-    "title": "https://github.com/google/fonts/raw/main/ofl/playfairdisplay/PlayfairDisplay-Bold.ttf",
-    "name": "https://github.com/google/fonts/raw/main/ofl/playfairdisplay/PlayfairDisplay-Italic.ttf",
-    "text": "https://github.com/google/fonts/raw/main/ofl/montserrat/Montserrat-Medium.ttf"
-}
-
 def get_font(font_name, size):
     font_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "fonts")
-    os.makedirs(font_dir, exist_ok=True)
     font_path = os.path.join(font_dir, f"{font_name}.ttf")
     
-    # Attempt to download if not exists
-    if not os.path.exists(font_path):
-        try:
-            req = urllib.request.Request(FONTS[font_name], headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req, timeout=5) as response:
-                with open(font_path, 'wb') as out_file:
-                    out_file.write(response.read())
-        except Exception:
-            pass
-            
-    # Attempt to load custom font
+    # Attempt to load bundled static font
     if os.path.exists(font_path):
         try:
             return ImageFont.truetype(font_path, size)
